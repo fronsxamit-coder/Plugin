@@ -1,0 +1,28 @@
+name: Build SMP-X jar
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Arrange files
+        run: |
+          mkdir -p src/main/java/com/smpx src/main/resources
+          if [ -f SMPX.java ]; then mv SMPX.java src/main/java/com/smpx/; fi
+          if [ -f plugin.yml ]; then mv plugin.yml src/main/resources/; fi
+      - name: Build
+        run: mvn -B package
+      - name: Upload jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: SMP-X-jar
+          path: target/SMP-X-1.0.0.jar
