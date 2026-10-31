@@ -1,0 +1,20 @@
+name: SMP-X
+main: com.smpx.SMPX
+version: 1.0.0
+api-version: '1.21'
+description: All-in-one SMP admin toolkit
+author: Owner
+
+commands:
+  smp:
+    description: SMP-X main command. Type /smp to see all commands.
+    usage: /smp
+    aliases: [smpx]
+
+permissions:
+  smpx.admin:
+    description: Use the SMP-X admin commands
+    default: op
+  smpx.owner:
+    description: Use owner-only SMP-X commands (god mode)
+    default: op
